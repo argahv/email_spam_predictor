@@ -25,7 +25,7 @@ const Dashboard = ({loading,emailPredictPost,prediction,...props}) => {
     <Form form={form} onFinish={handleEmailInput}>
       <Form.Item name="email">
 
-      <Input />
+      <Input.TextArea />
       </Form.Item>
        <Form.Item>
           <Button block type="primary" htmlType="submit">
@@ -33,7 +33,7 @@ const Dashboard = ({loading,emailPredictPost,prediction,...props}) => {
           </Button>
         </Form.Item>
     </Form>
-    {prediction && <h1>This email is {prediction.toUpperCase()}</h1>}
+    {prediction && <h1>This email is predicted to be {prediction.toUpperCase()}</h1>}
 
   </div>;
 };
