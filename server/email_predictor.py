@@ -45,7 +45,7 @@ nltk.download("stopwords")
 
 
 corpus = []
-for i in range(0, 958):
+for i in range(0, 957):
     message = re.sub('[^a-zA-Z]', ' ', dataset['Message_body'][i])
     message = message.lower()
     message = message.split()
@@ -62,12 +62,12 @@ for i in range(0, 958):
 
 cv = CountVectorizer(max_features=1500)
 
+X = cv.fit_transform(corpus).toarray()
+# y = dataset.iloc[:, 3].values
+y = dataset['is_spam'].values
+
 # pickle file for Count Vectorizer
 pickle.dump(cv, open('cv-transform.pkl', 'wb'))
-
-X = cv.fit_transform(corpus).toarray()
-y = dataset.iloc[:, 3].values
-
 
 # In[15]:
 

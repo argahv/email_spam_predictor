@@ -14,7 +14,7 @@ const reducer = (state = INITIAL_STATE, { type, payload }) =>
             draft.loading = false;
             break;
         case types.EMAIL_TYPE_PREDICT_SUCCESS:
-            draft.prediction = payload;
+            draft.prediction = payload.prediction;
             draft.loading = false;
             break;
         case types.EMAIL_TYPE_PREDICT_FAILURE:
