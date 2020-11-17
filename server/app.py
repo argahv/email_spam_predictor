@@ -13,7 +13,7 @@ app = Flask(__name__, template_folder='template')
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
-@app.route('/api/predict', methods=["POST", "GET"])
+@app.route('/api/predict', methods=["POST"])
 def predict():
     if request.method == "POST":
         req_data = request.get_json()

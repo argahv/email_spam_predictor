@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
 
 from sklearn.metrics import accuracy_score
 import numpy as np
@@ -18,31 +13,12 @@ from sklearn.feature_extraction.text import CountVectorizer
 from nltk.stem.porter import PorterStemmer
 import pickle
 
-
-# In[2]:
-
-
 dataset = pd.read_csv('SMS_train.csv', encoding='latin1')
 dataset_test = pd.read_csv('SMS_test.csv', encoding='latin1')
 
-
-# In[3]
-
-
-# In[4]:
-
-
 dataset["is_spam"] = dataset["Label"].map({"Non-Spam": 0, "Spam": 1})
 
-
-# In[
-# In[6]:
-
-
 nltk.download("stopwords")
-
-# In[7]:
-
 
 corpus = []
 for i in range(0, 957):
@@ -57,9 +33,6 @@ for i in range(0, 957):
 
 # ## Creating the bag of words
 
-# In[21]:
-
-
 cv = CountVectorizer(max_features=1500)
 
 X = cv.fit_transform(corpus).toarray()
@@ -69,18 +42,12 @@ y = dataset['is_spam'].values
 # pickle file for Count Vectorizer
 pickle.dump(cv, open('cv-transform.pkl', 'wb'))
 
-# In[15]:
-
 
 # Splitting the dataset into the Training set and Test set
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.20, random_state=0)
 
-
 # ## Training the Naive Bayes model
-
-# In[16]:
-
 
 classifier = GaussianNB()
 classifier.fit(X_train, y_train)
@@ -89,26 +56,13 @@ classifier.fit(X_train, y_train)
 filename = 'email-spam-predictor.pkl'
 pickle.dump(classifier, open(filename, 'wb'))
 
-
-# In[17]:
-
-
 y_pred = classifier.predict(X_test)
-
 
 # ## Confusion Matrix
 
-# In[18]:
-
-
 cm = confusion_matrix(y_test, y_pred)
 
-
-# In[19]:
-
+#  Accuracy
 
 accuracy = accuracy_score(y_test, y_pred)
 accuracy*100
-
-
-# In[ ]:
